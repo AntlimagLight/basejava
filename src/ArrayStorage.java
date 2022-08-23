@@ -2,17 +2,20 @@ import java.util.Arrays;
 
 public class ArrayStorage {
     Resume[] storage = new Resume[10000];
+    private int size = 0;
 
     void clear() {
-        Arrays.fill(storage, null);
+        Arrays.fill(storage, 0, size - 1, null);
+        size = 0;
     }
 
     void save(Resume newResume) {
-        storage[findFirstEmptyIdx()] = newResume;
+        storage[findIndex()] = newResume;
+        size++;
     }
 
     Resume get(String uuid) {
-        for (int i = 0; i < findFirstEmptyIdx(); i++) {
+        for (int i = 0; i < size; i++) {
             if (storage[i].uuid.equals(uuid)) {
                 return storage[i];
             }
@@ -22,38 +25,36 @@ public class ArrayStorage {
     }
 
     void delete(String uuid) {
-        for (int i = 0; i < findFirstEmptyIdx() - 1; i++) {
+        for (int i = 0; i < size - 1 ; i++) {
             if (storage[i].uuid.equals(uuid)) {
-                for (int j = i; j <= findFirstEmptyIdx(); j++) {
-                    if ((j + 1) > storage.length) {
+                for (int j = i; j <= size - 1; j++) {
+                    if ((j + 1) >= storage.length) {
                         storage[j] = null;
                         break;
                     }
                     storage[j] = storage[j + 1];
                 }
+                size--;
             }
         }
-
     }
 
     Resume[] getAll() {
-        return Arrays.copyOf(storage, findFirstEmptyIdx() >= 1 ? findFirstEmptyIdx() - 1 : findFirstEmptyIdx());
+        return Arrays.copyOf(storage, size);
     }
 
     int size() {
-        return findFirstEmptyIdx();
+        return size;
     }
 
-    private int findFirstEmptyIdx() {
-        int count = 0;
-        for (Resume resume : storage) {
+    private int findIndex() {
+        for (int i = 0; i < storage.length; i++) {
+            Resume resume = storage[i];
             if (resume == null) {
-                return count;
-            } else {
-                count++;
+                return i;
             }
         }
         // Свободного индекса нет весь массив заполнен, вот такой вот пока сигнал к этому.
-        return storage.length + 1;
+        return -1;
     }
 }
