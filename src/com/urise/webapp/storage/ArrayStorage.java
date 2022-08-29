@@ -4,7 +4,8 @@ import com.urise.webapp.model.Resume;
 import java.util.Arrays;
 
 public class ArrayStorage {
-    Resume[] storage = new Resume[3];
+    protected static final int STORAGE_LIMIT = 10000;
+    Resume[] storage = new Resume[STORAGE_LIMIT];
     private int size = 0;
 
     public void clear() {
@@ -13,54 +14,44 @@ public class ArrayStorage {
     }
 
     public void save(Resume newResume) {
-        if (storage.length - 1 >= size) {
-            if (!(checkAvailability(newResume.getUuid()))) {
-                storage[size] = newResume;
-                size++;
-            } else {
-                System.out.println("Ошибка! Резюме с uuid :" + newResume.getUuid() + " уже существует!");
-            }
-        } else {
+        if (STORAGE_LIMIT <= size) {
             System.out.println("Ошибка! Хранилище переполнено!");
+        } else if (!(findSearchKey(newResume.getUuid()) == -1)) {
+            System.out.println("Ошибка! Резюме с uuid :" + newResume.getUuid() + " уже существует!");
+        } else {
+            storage[size] = newResume;
+            size++;
         }
     }
 
     public void update(Resume updResume) {
-        if ((checkAvailability(updResume.getUuid()))) {
-            for (int i = 0; i < size; i++) {
-                if (storage[i].getUuid().equals(updResume.getUuid())) {
-                    storage[i] = updResume;
-                }
-            }
-        } else {
+        int key = findSearchKey(updResume.getUuid());
+        if (key == -1){
             throwErrorResumeNotFound(updResume.getUuid());
+        } else {
+            storage[key] = updResume;
         }
     }
 
     public Resume get(String uuid) {
-        if ((checkAvailability(uuid))) {
-            for (int i = 0; i < size; i++) {
-                if (storage[i].getUuid().equals(uuid)) {
-                    return storage[i];
-                }
-            }
-        } else {
+        int key = findSearchKey(uuid);
+        if (key == -1) {
             throwErrorResumeNotFound(uuid);
+            return null;
+        } else {
+            return storage[key];
         }
-        return null;
+
     }
 
     public void delete(String uuid) {
-        if ((checkAvailability(uuid))) {
-            for (int i = 0; i < size; i++) {
-                if (storage[i].getUuid().equals(uuid)) {
-                    if (size - 1 - i >= 0) System.arraycopy(storage, i + 1, storage, i, size - 1 - i);
-                    size--;
-                    storage[size] = null;
-                }
-            }
-        } else {
+        int key = findSearchKey(uuid);
+        if (key == -1) {
             throwErrorResumeNotFound(uuid);
+        } else {
+            System.arraycopy(storage, key + 1, storage, key, size - 1 - key);
+            size--;
+            storage[size] = null;
         }
     }
 
@@ -72,13 +63,13 @@ public class ArrayStorage {
         return size;
     }
 
-    private boolean checkAvailability(String uuid) {
+    private int findSearchKey(String uuid) {
         for (int i = 0; i < size; i++) {
             if (storage[i].getUuid().equals(uuid)) {
-                return true;
+                return i;
             }
         }
-        return false;
+        return -1;
     }
 
     private void throwErrorResumeNotFound(String uuid) {
