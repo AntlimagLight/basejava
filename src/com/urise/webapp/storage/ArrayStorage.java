@@ -7,13 +7,10 @@ public class ArrayStorage extends AbstractArrayStorage {
     @Override
     protected void addElement(Resume resume, int index) {
         storage[size] = resume;
-        size++;
     }
     @Override
-    protected void removeElement(int index) {
+    protected void fillRemovedElement(int index) {
         storage[index] = storage[size - 1];
-        storage[size] = null;
-        size--;
     }
 
     @Override

@@ -15,27 +15,26 @@ public abstract class AbstractArrayStorage implements Storage {
         size = 0;
     }
 
-    public void update(Resume updResume) {
-        int key = findSearchKey(updResume.getUuid());
+    public void update(Resume resume) {
+        int key = findSearchKey(resume.getUuid());
         if (key < 0){
-            throwErrorResumeNotFound(updResume.getUuid());
+            throwErrorResumeNotFound(resume.getUuid());
         } else {
-            storage[key] = updResume;
+            storage[key] = resume;
         }
     }
 
-    public void save(Resume newResume) {
-        int key = findSearchKey(newResume.getUuid());
+    public void save(Resume resume) {
+        int key = findSearchKey(resume.getUuid());
         if (STORAGE_LIMIT <= size) {
             System.out.println("Ошибка! Хранилище переполнено!");
         } else if (!(key < 0)) {
-            System.out.println("Ошибка! Резюме с uuid :" + newResume.getUuid() + " уже существует!");
+            System.out.println("Ошибка! Резюме с uuid :" + resume.getUuid() + " уже существует!");
         } else {
-            addElement(newResume, key);
+            addElement(resume, key);
+            size++;
         }
     }
-
-    protected abstract void addElement(Resume resume, int index);
 
     public Resume get(String uuid) {
         int key = findSearchKey(uuid);
@@ -52,11 +51,11 @@ public abstract class AbstractArrayStorage implements Storage {
         if (key < 0) {
             throwErrorResumeNotFound(uuid);
         } else {
-            removeElement(key);
+            fillRemovedElement(key);
+            storage[size] = null;
+            size--;
         }
     }
-
-    protected abstract void removeElement(int index);
 
     public Resume[] getAll() {
         return Arrays.copyOf(storage, size);
@@ -66,10 +65,14 @@ public abstract class AbstractArrayStorage implements Storage {
         return size;
     }
 
-    protected abstract int findSearchKey(String uuid);
-
     protected void throwErrorResumeNotFound(String uuid) {
         // Метод смиренно ждет Эксепшенов, чтобы умереть спокойно
         System.out.println("Ошибка! Резюме c uuid : " + uuid + " не найдено!");
     }
+
+    protected abstract void addElement(Resume resume, int index);
+
+    protected abstract void fillRemovedElement(int index);
+
+    protected abstract int findSearchKey(String uuid);
 }

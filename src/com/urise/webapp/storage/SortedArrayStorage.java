@@ -8,20 +8,15 @@ public class SortedArrayStorage extends AbstractArrayStorage {
 
     @Override
     protected void addElement(Resume resume, int index) {
-        int newElementIdx = Math.abs(index) - 1;
-        System.arraycopy(storage,newElementIdx,storage,newElementIdx + 1,size - newElementIdx);
-        storage[newElementIdx] = resume;
-        size++;
+        int insertionIndex = Math.abs(index) - 1;
+        System.arraycopy(storage,insertionIndex,storage,insertionIndex + 1,size - insertionIndex);
+        storage[insertionIndex] = resume;
     }
 
     @Override
-    protected void removeElement(int index) {
+    protected void fillRemovedElement(int index) {
         int numMoved = size - index - 1;
-        if (numMoved > 0) {
-            System.arraycopy(storage, index + 1, storage, index, numMoved);
-        }
-        storage[size] = null;
-        size--;
+        System.arraycopy(storage, index + 1, storage, index, numMoved);
     }
 
     @Override
