@@ -17,7 +17,7 @@ public abstract class AbstractArrayStorage implements Storage {
 
     public void update(Resume resume) {
         int key = findSearchKey(resume.getUuid());
-        if (key < 0){
+        if (key < 0) {
             throwErrorResumeNotFound(resume.getUuid());
         } else {
             storage[key] = resume;
