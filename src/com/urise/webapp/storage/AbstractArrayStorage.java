@@ -1,5 +1,8 @@
 package com.urise.webapp.storage;
 
+import com.urise.webapp.exception.ExistStorageException;
+import com.urise.webapp.exception.NotExistStorageException;
+import com.urise.webapp.exception.StorageException;
 import com.urise.webapp.model.Resume;
 
 import java.util.Arrays;
@@ -18,7 +21,7 @@ public abstract class AbstractArrayStorage implements Storage {
     public void update(Resume resume) {
         int key = findSearchKey(resume.getUuid());
         if (key < 0) {
-            throwErrorResumeNotFound(resume.getUuid());
+            throw new NotExistStorageException(resume.getUuid());
         } else {
             storage[key] = resume;
         }
@@ -27,9 +30,9 @@ public abstract class AbstractArrayStorage implements Storage {
     public void save(Resume resume) {
         int key = findSearchKey(resume.getUuid());
         if (STORAGE_LIMIT <= size) {
-            System.out.println("Ошибка! Хранилище переполнено!");
+            throw new StorageException("Хранилище переполнено!", resume.getUuid());
         } else if (!(key < 0)) {
-            System.out.println("Ошибка! Резюме с uuid :" + resume.getUuid() + " уже существует!");
+            throw new ExistStorageException(resume.getUuid());
         } else {
             addElement(resume, key);
             size++;
@@ -39,8 +42,7 @@ public abstract class AbstractArrayStorage implements Storage {
     public Resume get(String uuid) {
         int key = findSearchKey(uuid);
         if (key < 0) {
-            throwErrorResumeNotFound(uuid);
-            return null;
+            throw new NotExistStorageException(uuid);
         } else {
             return storage[key];
         }
@@ -49,7 +51,7 @@ public abstract class AbstractArrayStorage implements Storage {
     public void delete(String uuid) {
         int key = findSearchKey(uuid);
         if (key < 0) {
-            throwErrorResumeNotFound(uuid);
+            throw new NotExistStorageException(uuid);
         } else {
             fillRemovedElement(key);
             storage[size] = null;
@@ -63,11 +65,6 @@ public abstract class AbstractArrayStorage implements Storage {
 
     public int size() {
         return size;
-    }
-
-    protected void throwErrorResumeNotFound(String uuid) {
-        // Метод смиренно ждет Эксепшенов, чтобы умереть спокойно
-        System.out.println("Ошибка! Резюме c uuid : " + uuid + " не найдено!");
     }
 
     protected abstract void addElement(Resume resume, int index);
