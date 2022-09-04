@@ -117,11 +117,11 @@ public abstract class AbstractArrayStorageTest {
         assertSize(3);
     }
 
-    protected void assertSize (int expectedSize) {
+    protected void assertSize(int expectedSize) {
         Assert.assertEquals(expectedSize, storage.size());
     }
 
-    protected void assertGet (Resume expectedResume) {
+    protected void assertGet(Resume expectedResume) {
         Assert.assertEquals(expectedResume, storage.get(expectedResume.getUuid()));
     }
 }
