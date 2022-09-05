@@ -1,13 +1,11 @@
 package com.urise.webapp.storage;
 
-import com.urise.webapp.exception.ExistStorageException;
-import com.urise.webapp.exception.NotExistStorageException;
 import com.urise.webapp.exception.StorageException;
 import com.urise.webapp.model.Resume;
 
 import java.util.Arrays;
 
-public abstract class AbstractArrayStorage implements Storage {
+public abstract class AbstractArrayStorage extends AbstractStorage {
 
     protected static final int STORAGE_LIMIT = 10000;
     protected final Resume[] storage = new Resume[STORAGE_LIMIT];
@@ -18,45 +16,31 @@ public abstract class AbstractArrayStorage implements Storage {
         size = 0;
     }
 
-    public void update(Resume resume) {
-        int key = findSearchKey(resume.getUuid());
-        if (key < 0) {
-            throw new NotExistStorageException(resume.getUuid());
-        } else {
-            storage[key] = resume;
-        }
+    @Override
+    public void doUpdate(Resume resume, int key) {
+        storage[key] = resume;
     }
 
-    public void save(Resume resume) {
-        int key = findSearchKey(resume.getUuid());
+    @Override
+    public void doSave(Resume resume, int key) {
         if (STORAGE_LIMIT <= size) {
             throw new StorageException("Хранилище переполнено!", resume.getUuid());
-        } else if (!(key < 0)) {
-            throw new ExistStorageException(resume.getUuid());
         } else {
             addElement(resume, key);
             size++;
         }
     }
 
-    public Resume get(String uuid) {
-        int key = findSearchKey(uuid);
-        if (key < 0) {
-            throw new NotExistStorageException(uuid);
-        } else {
-            return storage[key];
-        }
+    @Override
+    public Resume doGet(int key) {
+        return storage[key];
     }
 
-    public void delete(String uuid) {
-        int key = findSearchKey(uuid);
-        if (key < 0) {
-            throw new NotExistStorageException(uuid);
-        } else {
-            fillRemovedElement(key);
-            storage[size] = null;
-            size--;
-        }
+    @Override
+    public void doDelete(int key) {
+        fillRemovedElement(key);
+        storage[size] = null;
+        size--;
     }
 
     public Resume[] getAll() {
@@ -71,5 +55,4 @@ public abstract class AbstractArrayStorage implements Storage {
 
     protected abstract void fillRemovedElement(int index);
 
-    protected abstract int findSearchKey(String uuid);
 }
