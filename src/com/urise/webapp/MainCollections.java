@@ -42,9 +42,9 @@ public class MainCollections {
 
 
         Map<String, Resume> map = new HashMap<>();
-        map.put(UUID_1, RESUME_1);
-        map.put(UUID_2, RESUME_2);
-        map.put(UUID_3, RESUME_3);
+        map.put("X1", RESUME_1);
+        map.put("X2", RESUME_2);
+        map.put("X3", RESUME_3);
 
         // Bad!
         for (String uuid : map.keySet()) {
@@ -52,7 +52,18 @@ public class MainCollections {
         }
 
         for (Map.Entry<String, Resume> entry : map.entrySet()) {
-            System.out.println(entry.getValue());
+            System.out.println("Ключ: " + entry.getKey() + " Значение: " + entry.getValue());
+        }
+        System.out.println("Проверка");
+        System.out.println(map.containsKey("X5"));
+        System.out.println("___");
+        System.out.println(map.size());
+        System.out.println("___");
+        System.out.println(map.values());
+        System.out.println("___");
+        Resume[] outputArray = map.values().toArray(new Resume[0]);
+        for (Resume r: outputArray) {
+            System.out.println(r);
         }
     }
 }
