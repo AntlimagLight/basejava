@@ -7,6 +7,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Arrays;
+import java.util.List;
+
 public abstract class AbstractStorageTest {
     private Storage storage;
 
@@ -16,11 +19,15 @@ public abstract class AbstractStorageTest {
     private static final String UUID_4 = "uuid4";
     private static final String UUID_NOT_EXIST = "dummy";
 
-    private static final Resume RESUME1 = new Resume(UUID_1);
-    private static final Resume RESUME2 = new Resume(UUID_2);
-    private static final Resume RESUME3 = new Resume(UUID_3);
-    private static final Resume RESUME4 = new Resume(UUID_4);
+    private static final String NAME1 = "Evan Chaplin";
+    private static final String NAME2 = "Alise Marlow";
+    private static final String NAME3 = "Igor Raven";
+    private static final String NAME4 = "Sam Robinson";
 
+    private static final Resume RESUME1 = new Resume(UUID_1, NAME1);
+    private static final Resume RESUME2 = new Resume(UUID_2, NAME2);
+    private static final Resume RESUME3 = new Resume(UUID_3, NAME3);
+    private static final Resume RESUME4 = new Resume(UUID_4, NAME4);
 
     protected AbstractStorageTest(Storage storage) {
         this.storage = storage;
@@ -29,9 +36,9 @@ public abstract class AbstractStorageTest {
     @Before
     public void setUp() {
         storage.clear();
-        storage.save(new Resume(UUID_1));
-        storage.save(new Resume(UUID_2));
-        storage.save(new Resume(UUID_3));
+        storage.save(new Resume(UUID_1, NAME1));
+        storage.save(new Resume(UUID_2, NAME2));
+        storage.save(new Resume(UUID_3, NAME3));
     }
 
     @Test
@@ -39,7 +46,7 @@ public abstract class AbstractStorageTest {
         storage.clear();
         assertSize(0);
         Resume[] expected = new Resume[0];
-        Assert.assertArrayEquals(expected, storage.getAll());
+        Assert.assertArrayEquals(expected, storage.getAllSorted().toArray());
     }
 
     @Test
@@ -92,10 +99,10 @@ public abstract class AbstractStorageTest {
     }
 
     @Test
-    public void getAll() {
-        Resume[] expected = {RESUME1, RESUME2, RESUME3};
-        Assert.assertArrayEquals(expected, storage.getAll());
-        assertSize(expected.length);
+    public void getAllSorted() {
+        List<Resume> list = storage.getAllSorted();
+        Assert.assertEquals(3, list.size());
+        Assert.assertEquals(list, Arrays.asList(RESUME2, RESUME1, RESUME3));
     }
 
     @Test

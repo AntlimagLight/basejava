@@ -1,17 +1,17 @@
 package com.urise.webapp;
 
 import com.urise.webapp.model.Resume;
-import com.urise.webapp.storage.MapStorage;
+import com.urise.webapp.storage.ListStorage;
 import com.urise.webapp.storage.Storage;
 
 public class MainTestCollectionStorage {
 
-    static final Storage COLLECTION_STORAGE = new MapStorage();
+    static final Storage COLLECTION_STORAGE = new ListStorage();
 
     public static void main(String[] args) {
-        Resume r1 = new Resume("uuid1");
-        Resume r2 = new Resume("uuid2");
-        Resume r3 = new Resume("uuid3");
+        Resume r1 = new Resume("uuid1", "Igor");
+        Resume r2 = new Resume("uuid2", "Alise");
+        Resume r3 = new Resume("uuid3", "Vasiliy");
 
         COLLECTION_STORAGE.save(r1);
         COLLECTION_STORAGE.save(r2);
@@ -39,8 +39,8 @@ public class MainTestCollectionStorage {
     }
 
     public static void printAll() {
-        for (Resume r : COLLECTION_STORAGE.getAll()) {
-            System.out.println(r);
+        for (Resume r : COLLECTION_STORAGE.getAllSorted()) {
+            System.out.println(r.getUuid() + " : " + r.getFullName());
         }
     }
 

@@ -3,7 +3,10 @@ package com.urise.webapp.storage;
 import com.urise.webapp.exception.StorageException;
 import com.urise.webapp.model.Resume;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public abstract class AbstractArrayStorage extends AbstractStorage {
 
@@ -16,6 +19,10 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
         size = 0;
     }
 
+    public int size() {
+        return size;
+    }
+
     @Override
     public void doUpdate(Resume resume, Object key) {
         storage[(int) key] = resume;
@@ -26,7 +33,7 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
         if (STORAGE_LIMIT <= size) {
             throw new StorageException("Хранилище переполнено!", resume.getUuid());
         } else {
-            addElement(resume, (Integer) key);
+            addElement(resume, (int) key);
             size++;
         }
     }
@@ -38,22 +45,21 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
 
     @Override
     public void doDelete(Object key) {
-        fillRemovedElement((Integer) key);
+        fillRemovedElement((int) key);
         storage[size] = null;
         size--;
     }
 
     @Override
     protected boolean isExist(Object key) {
-        return (Integer) key >= 0;
+        return (int) key >= 0;
     }
 
-    public Resume[] getAll() {
-        return Arrays.copyOf(storage, size);
-    }
-
-    public int size() {
-        return size;
+    @Override
+    protected List<Resume> getCopyAll() {
+        List<Resume> resumes = new ArrayList<>();
+        Collections.addAll(resumes, Arrays.copyOf(storage, size));
+        return resumes;
     }
 
     protected abstract void addElement(Resume resume, int index);
