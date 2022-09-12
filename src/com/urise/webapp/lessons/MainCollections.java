@@ -62,7 +62,7 @@ public class MainCollections {
         System.out.println(map.values());
         System.out.println("___");
         Resume[] outputArray = map.values().toArray(new Resume[0]);
-        for (Resume r: outputArray) {
+        for (Resume r : outputArray) {
             System.out.println(r);
         }
     }

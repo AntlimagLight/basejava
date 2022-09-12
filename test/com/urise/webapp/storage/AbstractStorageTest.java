@@ -11,7 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public abstract class AbstractStorageTest {
-    private Storage storage;
+    protected Storage storage;
 
     private static final String UUID_1 = "uuid1";
     private static final String UUID_2 = "uuid2";
@@ -51,7 +51,7 @@ public abstract class AbstractStorageTest {
 
     @Test
     public void update() {
-        Resume checkingResume = new Resume(UUID_3);
+        Resume checkingResume = new Resume(UUID_3, NAME3);
         storage.update(checkingResume);
         Assert.assertSame(checkingResume, storage.get(UUID_3));
     }

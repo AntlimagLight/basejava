@@ -17,11 +17,11 @@ public class Resume {
     }
 
     public Resume() {
-        this(UUID.randomUUID().toString());
+        this("NoName");
     }
 
-    public Resume(String uuid) {
-        this(uuid, "NoName");
+    public Resume(String fullName) {
+        this(UUID.randomUUID().toString(), fullName);
     }
 
     public Resume(String uuid, String fullName) {

@@ -9,10 +9,8 @@ import java.util.*;
 
 public abstract class AbstractStorage implements Storage {
 
-    protected static final Comparator<Resume> RESUME_COMPARATOR = (r1, r2) -> {
-        int compare = r1.getFullName().compareTo(r2.getFullName());
-        return compare == 0 ? r1.getUuid().compareTo(r2.getUuid()): compare;
-    };
+    protected static final Comparator<Resume> RESUME_COMPARATOR =
+            Comparator.comparing(Resume::getFullName).thenComparing(Resume::getUuid);
 
     public void update(Resume resume) {
         doUpdate(resume, getExistingSearchKey(resume.getUuid()));
@@ -55,6 +53,7 @@ public abstract class AbstractStorage implements Storage {
     }
 
     protected abstract List<Resume> getCopyAll();
+
     protected abstract void doUpdate(Resume resume, Object key);
 
     protected abstract void doSave(Resume resume, Object key);
