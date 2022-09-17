@@ -9,20 +9,24 @@ import java.util.List;
 public class ResumeTestData {
 
     public static void main(String[] args) {
+        printResume(createFullResume("uuid1", "Григорий Кислин"));
+    }
+
+    public static Resume createFullResume(String uuid, String fullName) {
 // Создаем резюме
-        Resume exampleResume = new Resume("uuid1", "Григорий Кислин");
+        Resume resume = new Resume(uuid, fullName);
 
 // Заполняем поля
-        exampleResume.addContact(ContactType.PHONE, "+7(921) 855-0482");
-        exampleResume.addContact(ContactType.SKYPE, "skype:grigory.kislin");
-        exampleResume.addContact(ContactType.EMAIL, "gkislin@yandex.ru");
-        exampleResume.addContact(ContactType.LINKEDIN, "https://www.linkedin.com/in/gkislin");
-        exampleResume.addContact(ContactType.GITHUB, "https://github.com/gkislin");
-        exampleResume.addContact(ContactType.HOMEPAGE, "http://gkislin.ru/");
-        exampleResume.addContact(ContactType.STACKOVERFLOW, "https://stackoverflow.com/users/548473");
-        exampleResume.addSection(SectionType.PERSONAL, new TextSection("Аналитический склад ума, сильная " +
+        resume.addContact(ContactType.PHONE, "+7(921) 855-0482");
+        resume.addContact(ContactType.SKYPE, "skype:grigory.kislin");
+        resume.addContact(ContactType.EMAIL, "gkislin@yandex.ru");
+        resume.addContact(ContactType.LINKEDIN, "https://www.linkedin.com/in/gkislin");
+        resume.addContact(ContactType.GITHUB, "https://github.com/gkislin");
+        resume.addContact(ContactType.HOMEPAGE, "http://gkislin.ru/");
+        resume.addContact(ContactType.STACKOVERFLOW, "https://stackoverflow.com/users/548473");
+        resume.addSection(SectionType.PERSONAL, new TextSection("Аналитический склад ума, сильная " +
                 "логика, креативность, инициативность. Пурист кода и архитектуры."));
-        exampleResume.addSection(SectionType.OBJECTIVE, new TextSection("Ведущий стажировок и корпоративного " +
+        resume.addSection(SectionType.OBJECTIVE, new TextSection("Ведущий стажировок и корпоративного " +
                 "обучения по Java Web и Enterprise технологиям."));
         List<String> exampleStringList = new ArrayList<>();
         exampleStringList.add("Организация команды и успешная реализация Java проектов для сторонних заказчиков: " +
@@ -47,7 +51,7 @@ public class ResumeTestData {
                 "мониторинга системы по JMX (Jython/ Django).");
         exampleStringList.add("Реализация протоколов по приему платежей всех основных платежных системы " +
                 "России (Cyberplat, Eport, Chronopay, Сбербанк), Белоруcсии(Erip, Osmp) и Никарагуа.");
-        exampleResume.addSection(SectionType.ACHIEVEMENT, new ListSection(exampleStringList));
+        resume.addSection(SectionType.ACHIEVEMENT, new ListSection(exampleStringList));
         exampleStringList = new ArrayList<>();
         exampleStringList.add("JEE AS: GlassFish (v2.1, v3), OC4J, JBoss, Tomcat, Jetty, WebLogic, WSO2");
         exampleStringList.add("Version control: Subversion, Git, Mercury, ClearCase, Perforce");
@@ -69,7 +73,7 @@ public class ResumeTestData {
         exampleStringList.add("Отличное знание и опыт применения концепций ООП, SOA, шаблонов проектрирования, " +
                 "архитектурных шаблонов, UML, функционального программирования");
         exampleStringList.add("Родной русский, английский \"upper intermediate\"");
-        exampleResume.addSection(SectionType.QUALIFICATIONS, new ListSection(exampleStringList));
+        resume.addSection(SectionType.QUALIFICATIONS, new ListSection(exampleStringList));
 
         List<Company> exampleCompanyList = new ArrayList<>();
         exampleCompanyList.add(createOnePeriodCompany("Alcatel", 1997, 9,
@@ -114,7 +118,7 @@ public class ResumeTestData {
         exampleCompanyList.add(createOnePeriodCompany("Java Online Projects", 2013, 10,
                 2022, 9, "Автор проекта.", "Создание, организация и" +
                         " проведение Java онлайн проектов и стажировок."));
-        exampleResume.addSection(SectionType.EXPERIENCE, new CompanySection(exampleCompanyList));
+        resume.addSection(SectionType.EXPERIENCE, new CompanySection(exampleCompanyList));
         exampleCompanyList = new ArrayList<>();
         exampleCompanyList.add(createOnePeriodCompany("Заочная физико-техническая школа при МФТИ",
                 1984, 9, 1987, 6, "Закончил с отличием", null));
@@ -144,24 +148,28 @@ public class ResumeTestData {
                 2013, 3, 2013, 5, "'Functional Programming Principles " +
                         "in Scala' by Martin Odersky",
                 null));
-        exampleResume.addSection(SectionType.EDUCATION, new CompanySection(exampleCompanyList));
-// Выпускаем кракена
-        System.out.println("Резюме: " + exampleResume.getFullName() + " / индентификатор " + exampleResume.getUuid());
+        resume.addSection(SectionType.EDUCATION, new CompanySection(exampleCompanyList));
+        return resume;
+    }
+
+    public static void printResume(Resume resume) {
+        // Выпускаем кракена
+        System.out.println("Резюме: " + resume.getFullName() + " / индентификатор " + resume.getUuid());
         System.out.println();
         System.out.println("Контакты:");
         for (ContactType type : ContactType.values()) {
-            if (!(exampleResume.getContact(type) == null)) {
-                System.out.println(type.getTitle() + " : " + exampleResume.getContact(type));
+            if (!(resume.getContact(type) == null)) {
+                System.out.println(type.getTitle() + " : " + resume.getContact(type));
             }
         }
         for (SectionType type : SectionType.values()) {
-            if (!(exampleResume.getSection(type) == null)) {
+            if (!(resume.getSection(type) == null)) {
                 System.out.println("\n >>> " + type.getTitle() + " <<<");
                 // Честно говоря, я пока не разобрался как проверить соотетствие типа секции, поэтому проверяю описание.
                 if (type.getTitle().equals("Образование") | type.getTitle().equals("Опыт работы")) {
-                    System.out.println(exampleResume.getSection(type));
+                    System.out.println(resume.getSection(type));
                 } else {
-                    System.out.println(stringToText(String.valueOf(exampleResume.getSection(type))));
+                    System.out.println(stringToText(String.valueOf(resume.getSection(type))));
                 }
             }
         }
