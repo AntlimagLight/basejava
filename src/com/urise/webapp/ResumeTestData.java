@@ -119,11 +119,11 @@ public class ResumeTestData {
         exampleCompanyList.add(createOnePeriodCompany("Заочная физико-техническая школа при МФТИ",
                 1984, 9, 1987, 6, "Закончил с отличием", null));
 // Два периода
-        List<TimePeriod> spUniversePeriodList = new ArrayList<>();
-        TimePeriod spUniversePeriod = new TimePeriod(LocalDate.of(1987, 9, 1),
+        List<Period> spUniversePeriodList = new ArrayList<>();
+        Period spUniversePeriod = new Period(LocalDate.of(1987, 9, 1),
                 LocalDate.of(1993, 7, 1), "Инженер (программист Fortran, C)", null);
         spUniversePeriodList.add(spUniversePeriod);
-        spUniversePeriod = new TimePeriod(LocalDate.of(1993, 9, 1),
+        spUniversePeriod = new Period(LocalDate.of(1993, 9, 1),
                 LocalDate.of(1996, 7, 1), "Аспирантура (программист С, С++)", null);
         spUniversePeriodList.add(spUniversePeriod);
         Company spUniverse = new Company("Санкт-Петербургский национальный исследовательский университет " +
@@ -180,9 +180,9 @@ public class ResumeTestData {
 
     public static Company createOnePeriodCompany(String companyName, int startYear, int startMonth,
                                                  int endYear, int endMonth, String title, String description) {
-        TimePeriod examplePeriod = new TimePeriod(LocalDate.of(startYear, startMonth, 1),
+        Period examplePeriod = new Period(LocalDate.of(startYear, startMonth, 1),
                 LocalDate.of(endYear, endMonth, 1), title, description);
-        List<TimePeriod> examplePeriodList = new ArrayList<>();
+        List<Period> examplePeriodList = new ArrayList<>();
         examplePeriodList.add(examplePeriod);
         return new Company(companyName, examplePeriodList);
     }

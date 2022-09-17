@@ -5,22 +5,22 @@ import java.util.Objects;
 
 public class Company {
 
-    private final List<TimePeriod> periods;
-    private final String companyName;
+    private final List<Period> periods;
+    private final String name;
 
-    public Company(String companyName, List<TimePeriod> periods) {
-        Objects.requireNonNull(companyName, "Поле companyName не должно равняеться null");
+    public Company(String name, List<Period> periods) {
+        Objects.requireNonNull(name, "Поле companyName не должно равняеться null");
         Objects.requireNonNull(periods, "Поле periods не должно равняеться null");
         this.periods = periods;
-        this.companyName = companyName;
+        this.name = name;
     }
 
-    public List<TimePeriod> getPeriods() {
+    public List<Period> getPeriods() {
         return periods;
     }
 
-    public String getCompanyName() {
-        return companyName;
+    public String getName() {
+        return name;
     }
 
 
@@ -32,19 +32,19 @@ public class Company {
         Company that = (Company) o;
 
         if (!periods.equals(that.periods)) return false;
-        return companyName.equals(that.companyName);
+        return name.equals(that.name);
     }
 
     @Override
     public int hashCode() {
         int result = periods.hashCode();
-        result = 31 * result + companyName.hashCode();
+        result = 31 * result + name.hashCode();
         return result;
     }
 
     @Override
     public String toString() {
-        return "\ncompanyName: " + companyName +
+        return "\nname: " + name +
                 "\nperiods: " + periods + "\n";
     }
 }
