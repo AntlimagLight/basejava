@@ -8,10 +8,13 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.File;
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 
-public abstract class AbstractStorageTest {
+public abstract class AbstractStorageTest implements Serializable {
+    protected final static File STORAGE_DIR = new File("D:\\Java Projects\\basejava\\storage");
     protected Storage storage;
 
     private static final String UUID_1 = "uuid1";
@@ -54,7 +57,7 @@ public abstract class AbstractStorageTest {
     public void update() {
         Resume checkingResume = ResumeTestData.createFullResume(UUID_3, NAME3);
         storage.update(checkingResume);
-        Assert.assertSame(checkingResume, storage.get(UUID_3));
+        Assert.assertEquals(checkingResume, storage.get(UUID_3));
     }
 
     @Test(expected = NotExistStorageException.class)
