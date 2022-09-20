@@ -30,8 +30,10 @@ public class MainFile {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        System.out.println("_____ Домашнее задание_____");
-        printDirectoryDeep(dir, "./ ");
+        System.out.println("_____ Домашнее задание к уроку 8_____");
+        printDirectoryDeep(dir, "./");
+        System.out.println("_____ Домашнее задание к уроку 9_____");
+        printDirectoryDeepIndent(dir, "");
     }
 
     public static void printDirectoryDeep(File dir, String track) {
@@ -41,7 +43,23 @@ public class MainFile {
                 if (file.isFile()) {
                     System.out.println(track + file.getName() + " ");
                 } else if (file.isDirectory()) {
-                    printDirectoryDeep(file, track + file.getName() + " / ");
+                    printDirectoryDeep(file, track + file.getName() + "/");
+                }
+            }
+        } else {
+            System.out.println("Директория пуста");
+        }
+    }
+
+    public static void printDirectoryDeepIndent(File dir, String track) {
+        File[] list = dir.listFiles();
+        if (list != null) {
+            for (File file : list) {
+                if (file.isFile()) {
+                    System.out.println(track + file.getName());
+                } else if (file.isDirectory()) {
+                    System.out.println(track + "DIR " + file.getName());
+                    printDirectoryDeepIndent(file, track + "    ");
                 }
             }
         } else {
