@@ -28,22 +28,14 @@ public abstract class AbstractFileStorage extends AbstractStorage<File> {
 
     @Override
     public void clear() {
-        File[] list = directory.listFiles();
-        if (list == null) {
-            throw new StorageException("Ошибка при чтении директории", null);
-        }
-        for (File file : list) {
+        for (File file : getCheckedFileArray()) {
             doDelete(file);
         }
     }
 
     @Override
     public int size() {
-        String[] list = directory.list();
-        if (list == null) {
-            throw new StorageException("Ошибка при чтении директории", null);
-        }
-        return list.length;
+        return getCheckedFileArray().length;
     }
 
     @Override
@@ -69,10 +61,10 @@ public abstract class AbstractFileStorage extends AbstractStorage<File> {
     protected void doSave(Resume r, File file) {
         try {
             file.createNewFile();
-            doWrite(r, file);
         } catch (IOException e) {
             throw new StorageException("IO ошибка", file.getName(), e);
         }
+        doUpdate(r,file);
     }
 
     @Override
@@ -94,15 +86,18 @@ public abstract class AbstractFileStorage extends AbstractStorage<File> {
     @Override
     protected List<Resume> getCopyAll() {
         List<Resume> resumes = new ArrayList<>();
+        for (File file : getCheckedFileArray()) {
+            resumes.add(doGet(file));
+        }
+        return resumes;
+    }
+
+    protected File[] getCheckedFileArray() {
         File[] list = directory.listFiles();
         if (list == null) {
             throw new StorageException("Ошибка при чтении файла", null);
-        } else {
-            for (File file : list) {
-                resumes.add(doGet(file));
-            }
         }
-        return resumes;
+        return list;
     }
 
     protected abstract Resume doRead(File file) throws IOException;
