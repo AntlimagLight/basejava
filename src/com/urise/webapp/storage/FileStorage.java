@@ -4,17 +4,16 @@ import com.urise.webapp.exception.StorageException;
 import com.urise.webapp.model.Resume;
 import com.urise.webapp.storage.serializestrategy.Serializer;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public abstract class AbstractFileStorage extends AbstractStorage<File> {
+public class FileStorage extends AbstractStorage<File> {
     private final File directory;
-    protected Serializer serializer;
+    private final Serializer serializer;
 
-    protected AbstractFileStorage(File directory, Serializer serializer) {
+    protected FileStorage(File directory, Serializer serializer) {
         Objects.requireNonNull(directory, "Директория не должна быть null");
         if (!directory.isDirectory()) {
             throw new IllegalArgumentException(directory.getAbsolutePath() + " не является директорией");
@@ -46,7 +45,7 @@ public abstract class AbstractFileStorage extends AbstractStorage<File> {
     @Override
     protected void doUpdate(Resume r, File file) {
         try {
-            doWrite(r, file);
+            serializer.write(r, new BufferedOutputStream(new FileOutputStream(file)));
         } catch (IOException e) {
             throw new StorageException("IO ошибка", file.getName(), e);
         }
@@ -64,13 +63,13 @@ public abstract class AbstractFileStorage extends AbstractStorage<File> {
         } catch (IOException e) {
             throw new StorageException("IO ошибка", file.getName(), e);
         }
-        doUpdate(r,file);
+        doUpdate(r, file);
     }
 
     @Override
     protected Resume doGet(File file) {
         try {
-            return doRead(file);
+            return serializer.read(new BufferedInputStream(new FileInputStream(file)));
         } catch (IOException e) {
             throw new StorageException("Ошибка при чтении файла", file.getName(), e);
         }
@@ -100,7 +99,4 @@ public abstract class AbstractFileStorage extends AbstractStorage<File> {
         return list;
     }
 
-    protected abstract Resume doRead(File file) throws IOException;
-
-    protected abstract void doWrite(Resume r, File file) throws IOException;
 }
