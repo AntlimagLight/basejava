@@ -17,7 +17,7 @@ public abstract class AbstractArrayStorageTest extends AbstractStorageTest {
         storage.clear();
         try {
             for (int i = 0; i < AbstractArrayStorage.STORAGE_LIMIT; i++) {
-                storage.save(new Resume());
+                storage.save(new Resume("NoName"));
             }
         } catch (StorageException e) {
             Assert.fail("Переполнение массива произошло преждевременно!");

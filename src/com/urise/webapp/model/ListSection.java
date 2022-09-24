@@ -1,22 +1,27 @@
 package com.urise.webapp.model;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import java.io.Serial;
 import java.util.List;
 import java.util.Objects;
-
+@XmlAccessorType(XmlAccessType.FIELD)
 public class ListSection extends AbstractSection {
     @Serial
     private static final long serialVersionUID = 1L;
 
-    private final List<String> content;
+    private List<String> content;
 
     public ListSection(List<String> content) {
         Objects.requireNonNull(content, "Поле content не должно равняеться null");
         this.content = content;
     }
 
-    public String getContent() {
-        return String.valueOf(content);
+    public ListSection() {
+    }
+
+    public List<String> getContent() {
+        return content;
     }
 
     @Override
