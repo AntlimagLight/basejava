@@ -46,6 +46,32 @@ public class MainConcurrency {
             }
         });
         System.out.println(counter);
+
+        System.out.println("_____ Домашнее задание к уроку 11_____");
+        final Object res1 = 1;
+        final Object res2 = 2;
+        StartThreads(res1, res2);
+        StartThreads(res2, res1);
+    }
+
+    private static void StartThreads(Object res1, Object res2) {
+        new Thread(() -> {
+            System.out.println("Ожидаем " + res1);
+            synchronized (res1) {
+                System.out.println(res1 + "идет синхр блок");
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                System.out.println("Ожидаем " + res2);
+                synchronized (res2) {
+                    System.out.println(res2 + "идет синхр блок");
+                }
+                System.out.println(res2 + "закончен синхр блок");
+            }
+            System.out.println(res1 + "закончен синхр блок");
+        }).start();
     }
 
     private void inc() {
