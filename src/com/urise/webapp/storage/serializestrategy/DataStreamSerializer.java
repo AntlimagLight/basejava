@@ -63,9 +63,11 @@ public class DataStreamSerializer implements Serializer {
     private interface ElementWriter<T> {
         void write(T t) throws IOException;
     }
+
     private interface ElementProcessor {
         void process() throws IOException;
     }
+
     private interface ElementReader<T> {
         T read() throws IOException;
     }

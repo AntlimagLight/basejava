@@ -8,7 +8,7 @@ import java.util.stream.IntStream;
 public class MainLesson12 {
     public static void main(String[] args) {
 
-        int[] arr = {9,5,5,4,8,8,2};
+        int[] arr = {9, 5, 5, 4, 8, 8, 2};
         System.out.println("___");
         System.out.println(minValue(arr));
 
@@ -27,7 +27,7 @@ public class MainLesson12 {
                 .of(values)
                 .distinct()
                 .sorted()
-                .reduce(0, (a, b) -> a * 10 + b );
+                .reduce(0, (a, b) -> a * 10 + b);
     }
 
     static List<Integer> oddOrEven(List<Integer> integers) {

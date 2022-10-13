@@ -1,6 +1,7 @@
 package com.urise.webapp.util;
 
 import com.google.gson.*;
+
 import java.lang.reflect.Type;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -10,7 +11,7 @@ public class JsonLocalDateAdapter implements JsonSerializer<LocalDate>, JsonDese
     @Override
     public LocalDate deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
         String ldtString = jsonElement.getAsString();
-        return LocalDate.parse(ldtString,DateTimeFormatter.ISO_LOCAL_DATE);
+        return LocalDate.parse(ldtString, DateTimeFormatter.ISO_LOCAL_DATE);
     }
 
     @Override

@@ -5,6 +5,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import java.io.Serial;
 import java.util.List;
 import java.util.Objects;
+
 @XmlAccessorType(XmlAccessType.FIELD)
 public class ListSection extends AbstractSection {
     @Serial

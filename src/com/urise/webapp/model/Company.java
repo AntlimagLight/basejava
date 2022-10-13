@@ -5,6 +5,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
+
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Company implements Serializable {
 
