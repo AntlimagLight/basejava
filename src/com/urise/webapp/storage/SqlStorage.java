@@ -48,8 +48,6 @@ public class SqlStorage implements Storage {
 
     @Override
     public void update(Resume r) {
-        // Если есть какой-то простой вариант, как можно сделать логику сравнения контактов, чтобы не стирать все,
-        // то прошу подсказать, потому что я не придумал.
         sqlHelper.executeInTransaction(conn -> {
             try (PreparedStatement ps = conn.prepareStatement("UPDATE resume SET full_name = ? WHERE uuid = ?")) {
                 ps.setString(1, r.getFullName());
@@ -107,7 +105,6 @@ public class SqlStorage implements Storage {
                     resume = new Resume(uuid, rs.getString("full_name"));
                     map.put(uuid, resume);
                 }
-                String value = rs.getString("value");
                 addContact(rs, resume);
             }
             return new ArrayList<>(map.values());
