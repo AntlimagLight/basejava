@@ -20,61 +20,61 @@ public class ResumeTestData {
         resume.addContact(ContactType.PHONE, "+7(921) 855-0482");
         resume.addContact(ContactType.SKYPE, "skype:grigory.kislin");
         resume.addContact(ContactType.EMAIL, "gkislin@yandex.ru");
-//        resume.addContact(ContactType.LINKEDIN, "https://www.linkedin.com/in/gkislin");
-//       resume.addContact(ContactType.GITHUB, "https://github.com/gkislin");
-//        resume.addContact(ContactType.HOMEPAGE, "http://gkislin.ru/");
-//        resume.addContact(ContactType.STACKOVERFLOW, "https://stackoverflow.com/users/548473");
-//        resume.addSection(SectionType.PERSONAL, new TextSection("Аналитический склад ума, сильная " +
-//                "логика, креативность, инициативность. Пурист кода и архитектуры."));
-//        resume.addSection(SectionType.OBJECTIVE, new TextSection("Ведущий стажировок и корпоративного " +
-//                "обучения по Java Web и Enterprise технологиям."));
-//        List<String> exampleStringList = new ArrayList<>();
-//        exampleStringList.add("Организация команды и успешная реализация Java проектов для сторонних заказчиков: " +
-//                "приложения автопарк на стеке Spring Cloud/микросервисы, система мониторинга показателей спортсменов " +
-//                "на Spring Boot, участие в проекте МЭШ на Play-2, многомодульный Spring Boot + Vaadin проект для " +
-//                "комплексных DIY смет. ");
-//        exampleStringList.add("С 2013 года: разработка проектов \"Разработка Web приложения\",\"Java Enterprise\"," +
-//                " \"Многомодульный maven. Многопоточность. XML (JAXB/StAX). Веб сервисы (JAX-RS/SOAP). " +
-//                "Удаленное взаимодействие (JMS/AKKA)\". Организация онлайн стажировок и ведение проектов. " +
-//                "Более 3500 выпускников.");
-//        exampleStringList.add("Реализация двухфакторной аутентификации для онлайн платформы управления проектами" +
-//                " Wrike. Интеграция с Twilio, DuoSecurity, Google Authenticator, Jira, Zendesk.");
-//        exampleStringList.add("Налаживание процесса разработки и непрерывной интеграции ERP системы River BPM." +
-//                " Интеграция с 1С, Bonita BPM, CMIS, LDAP. Разработка приложения управления окружением на стеке:" +
-//                " Scala/Play/Anorm/JQuery. Разработка SSO аутентификации и авторизации различных ERP модулей, " +
-//                "интеграция CIFS/SMB java сервера.");
-//        exampleStringList.add("Реализация c нуля Rich Internet Application приложения на стеке технологий JPA, " +
-//                "Spring, Spring-MVC, GWT, ExtGWT (GXT), Commet, HTML5, Highstock для алгоритмического трейдинга.");
-//        exampleStringList.add("Создание JavaEE фреймворка для отказоустойчивого взаимодействия слабо-связанных " +
-//                "ервисов (SOA-base архитектура, JAX-WS, JMS, AS Glassfish). Сбор статистики сервисов и информации о " +
-//                "состоянии через систему мониторинга Nagios. Реализация онлайн клиента для администрирования и " +
-//                "мониторинга системы по JMX (Jython/ Django).");
-//        exampleStringList.add("Реализация протоколов по приему платежей всех основных платежных системы " +
-//                "России (Cyberplat, Eport, Chronopay, Сбербанк), Белоруcсии(Erip, Osmp) и Никарагуа.");
-//        resume.addSection(SectionType.ACHIEVEMENT, new ListSection(exampleStringList));
-//        exampleStringList = new ArrayList<>();
-//        exampleStringList.add("JEE AS: GlassFish (v2.1, v3), OC4J, JBoss, Tomcat, Jetty, WebLogic, WSO2");
-//        exampleStringList.add("Version control: Subversion, Git, Mercury, ClearCase, Perforce");
-//        exampleStringList.add("DB: PostgreSQL(наследование, pgplsql, PL/Python), Redis (Jedis), H2, Oracle, " +
-//                "MySQL, SQLite, MS SQL, HSQLDB");
-//        exampleStringList.add("XML/XSD/XSLT, SQL, C/C++, Unix shell scripts");
-//        exampleStringList.add("Java Frameworks: Java 8 (Time API, Streams), Guava, Java Executor, MyBatis, " +
-//                "Spring (MVC, Security, Data, Clouds, Boot), JPA (Hibernate, EclipseLink), Guice, GWT(SmartGWT, " +
-//                "ExtGWT/GXT), Vaadin, Jasperreports, Apache Commons, Eclipse SWT, JUnit, Selenium (htmlelements).");
-//        exampleStringList.add("Python: Django.");
-//        exampleStringList.add("JavaScript: jQuery, ExtJS, Bootstrap.js, underscore.js");
-//        exampleStringList.add("Scala: SBT, Play2, Specs2, Anorm, Spray, Akka");
-//        exampleStringList.add("Технологии: Servlet, JSP/JSTL, JAX-WS, REST, EJB, RMI, JMS, JavaMail, JAXB, StAX, " +
-//                "SAX, DOM, XSLT, MDB, JMX, JDBC, JPA, JNDI, JAAS, SOAP, AJAX, Commet, HTML5, ESB, CMIS, BPMN2, LDAP, " +
-//                "OAuth1, OAuth2, JWT.");
-//        exampleStringList.add("Инструменты: Maven + plugin development, Gradle, настройка Ngnix");
-//        exampleStringList.add("администрирование Hudson/Jenkins, Ant + custom task, SoapUI, JPublisher, Flyway, " +
-//                "Nagios, iReport, OpenCmis, Bonita, pgBouncer");
-//        exampleStringList.add("Отличное знание и опыт применения концепций ООП, SOA, шаблонов проектрирования, " +
-//                "архитектурных шаблонов, UML, функционального программирования");
-//        exampleStringList.add("Родной русский, английский \"upper intermediate\"");
-//        resume.addSection(SectionType.QUALIFICATIONS, new ListSection(exampleStringList));
-//
+        resume.addContact(ContactType.LINKEDIN, "https://www.linkedin.com/in/gkislin");
+       resume.addContact(ContactType.GITHUB, "https://github.com/gkislin");
+        resume.addContact(ContactType.HOMEPAGE, "http://gkislin.ru/");
+        resume.addContact(ContactType.STACKOVERFLOW, "https://stackoverflow.com/users/548473");
+        resume.addSection(SectionType.PERSONAL, new TextSection("Аналитический склад ума, сильная " +
+                "логика, креативность, инициативность. Пурист кода и архитектуры."));
+        resume.addSection(SectionType.OBJECTIVE, new TextSection("Ведущий стажировок и корпоративного " +
+                "обучения по Java Web и Enterprise технологиям."));
+        List<String> exampleStringList = new ArrayList<>();
+        exampleStringList.add("Организация команды и успешная реализация Java проектов для сторонних заказчиков: " +
+                "приложения автопарк на стеке Spring Cloud/микросервисы, система мониторинга показателей спортсменов " +
+                "на Spring Boot, участие в проекте МЭШ на Play-2, многомодульный Spring Boot + Vaadin проект для " +
+                "комплексных DIY смет. ");
+        exampleStringList.add("С 2013 года: разработка проектов \"Разработка Web приложения\",\"Java Enterprise\"," +
+                " \"Многомодульный maven. Многопоточность. XML (JAXB/StAX). Веб сервисы (JAX-RS/SOAP). " +
+                "Удаленное взаимодействие (JMS/AKKA)\". Организация онлайн стажировок и ведение проектов. " +
+                "Более 3500 выпускников.");
+        exampleStringList.add("Реализация двухфакторной аутентификации для онлайн платформы управления проектами" +
+                " Wrike. Интеграция с Twilio, DuoSecurity, Google Authenticator, Jira, Zendesk.");
+        exampleStringList.add("Налаживание процесса разработки и непрерывной интеграции ERP системы River BPM." +
+                " Интеграция с 1С, Bonita BPM, CMIS, LDAP. Разработка приложения управления окружением на стеке:" +
+                " Scala/Play/Anorm/JQuery. Разработка SSO аутентификации и авторизации различных ERP модулей, " +
+                "интеграция CIFS/SMB java сервера.");
+        exampleStringList.add("Реализация c нуля Rich Internet Application приложения на стеке технологий JPA, " +
+                "Spring, Spring-MVC, GWT, ExtGWT (GXT), Commet, HTML5, Highstock для алгоритмического трейдинга.");
+        exampleStringList.add("Создание JavaEE фреймворка для отказоустойчивого взаимодействия слабо-связанных " +
+                "ервисов (SOA-base архитектура, JAX-WS, JMS, AS Glassfish). Сбор статистики сервисов и информации о " +
+                "состоянии через систему мониторинга Nagios. Реализация онлайн клиента для администрирования и " +
+                "мониторинга системы по JMX (Jython/ Django).");
+        exampleStringList.add("Реализация протоколов по приему платежей всех основных платежных системы " +
+                "России (Cyberplat, Eport, Chronopay, Сбербанк), Белоруcсии(Erip, Osmp) и Никарагуа.");
+        resume.addSection(SectionType.ACHIEVEMENT, new ListSection(exampleStringList));
+        exampleStringList = new ArrayList<>();
+        exampleStringList.add("JEE AS: GlassFish (v2.1, v3), OC4J, JBoss, Tomcat, Jetty, WebLogic, WSO2");
+        exampleStringList.add("Version control: Subversion, Git, Mercury, ClearCase, Perforce");
+        exampleStringList.add("DB: PostgreSQL(наследование, pgplsql, PL/Python), Redis (Jedis), H2, Oracle, " +
+                "MySQL, SQLite, MS SQL, HSQLDB");
+        exampleStringList.add("XML/XSD/XSLT, SQL, C/C++, Unix shell scripts");
+        exampleStringList.add("Java Frameworks: Java 8 (Time API, Streams), Guava, Java Executor, MyBatis, " +
+                "Spring (MVC, Security, Data, Clouds, Boot), JPA (Hibernate, EclipseLink), Guice, GWT(SmartGWT, " +
+                "ExtGWT/GXT), Vaadin, Jasperreports, Apache Commons, Eclipse SWT, JUnit, Selenium (htmlelements).");
+        exampleStringList.add("Python: Django.");
+        exampleStringList.add("JavaScript: jQuery, ExtJS, Bootstrap.js, underscore.js");
+        exampleStringList.add("Scala: SBT, Play2, Specs2, Anorm, Spray, Akka");
+        exampleStringList.add("Технологии: Servlet, JSP/JSTL, JAX-WS, REST, EJB, RMI, JMS, JavaMail, JAXB, StAX, " +
+                "SAX, DOM, XSLT, MDB, JMX, JDBC, JPA, JNDI, JAAS, SOAP, AJAX, Commet, HTML5, ESB, CMIS, BPMN2, LDAP, " +
+                "OAuth1, OAuth2, JWT.");
+        exampleStringList.add("Инструменты: Maven + plugin development, Gradle, настройка Ngnix");
+        exampleStringList.add("администрирование Hudson/Jenkins, Ant + custom task, SoapUI, JPublisher, Flyway, " +
+                "Nagios, iReport, OpenCmis, Bonita, pgBouncer");
+        exampleStringList.add("Отличное знание и опыт применения концепций ООП, SOA, шаблонов проектрирования, " +
+                "архитектурных шаблонов, UML, функционального программирования");
+        exampleStringList.add("Родной русский, английский \"upper intermediate\"");
+        resume.addSection(SectionType.QUALIFICATIONS, new ListSection(exampleStringList));
+
 //        List<Company> exampleCompanyList = new ArrayList<>();
 //        exampleCompanyList.add(createOnePeriodCompany("Alcatel", 1997, 9,
 //                2005, 1, "Инженер по аппаратному и программному тестированию", "" +
