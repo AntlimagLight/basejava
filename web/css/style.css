@@ -1,14 +1,74 @@
 header {
-    background: none repeat scroll 0 0 #EEE8AA;
-    color: #2E6E9E;
+    background: none repeat scroll 0 0 #3E352C;
+    color: #807868;
     font-size: 20px;
+    font-family: Calibri, cursive;
     padding: 5px 20px;
 }
 
 footer {
-    background: none repeat scroll 0 0 #9CEE90;
-    color: #2E6E9E;
-    font-size: 20px;
+    background: none repeat scroll 0 0 #3E352C;
+    color: #807868;
+    font-size: 14px;
+    font-family: Calibri, cursive;
     padding: 5px 20px;
     margin: 20px 0;
 }
+
+a {
+    outline: none;
+    text-decoration: none;
+    padding: 2px 1px 0;
+}
+
+a:link {
+    color: #265301;
+}
+
+a:visited {
+    color: #437A16;
+}
+
+a:focus {
+    border-bottom: 1px solid;
+    background: #BAE498;
+}
+
+a:hover {
+    border-bottom: 1px solid;
+    background: #CDFEAA;
+}
+
+a:active {
+    background: #265301;
+    color: #CDFEAA;
+}
+
+body {
+    background-color: #ad9776;
+}
+
+dl {
+    background: none repeat scroll 0 0;
+    margin: 8px 0;
+    padding: 0;
+}
+
+dt {
+    display: inline-block;
+    width: 170px;
+}
+
+dd {
+    display: inline-block;
+    margin-left: 8px;
+    vertical-align: top;
+}
+
+/*h2, h3 {*/
+/*    margin: 15px 0 5px;*/
+/*}*/
+
+/*li {*/
+/*    margin: 15px 0;*/
+/*}*/

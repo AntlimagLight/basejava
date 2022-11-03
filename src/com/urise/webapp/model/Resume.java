@@ -22,13 +22,17 @@ public class Resume implements Serializable {
 
     private final String uuid;
 
-    private final String fullName;
+    private String fullName;
     private final Map<ContactType, String> contacts = new EnumMap<>(ContactType.class);
 
     private final Map<SectionType, AbstractSection> sections = new EnumMap<>(SectionType.class);
 
     public String getFullName() {
         return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public Map<ContactType, String> getContacts() {
@@ -94,4 +98,6 @@ public class Resume implements Serializable {
     public String toString() {
         return uuid;
     }
+
+
 }
