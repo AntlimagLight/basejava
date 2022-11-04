@@ -68,7 +68,7 @@ public class SqlStorage implements Storage {
                 }
             }
             sqlHelper.execute("DELETE  FROM contact WHERE resume_uuid=?;" +
-                                  "DELETE  FROM section WHERE resume_uuid=?", ps -> {
+                    "DELETE  FROM section WHERE resume_uuid=?", ps -> {
                 ps.setString(1, r.getUuid());
                 ps.setString(2, r.getUuid());
                 ps.execute();

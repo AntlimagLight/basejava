@@ -21,7 +21,7 @@ public class ResumeTestData {
         resume.addContact(ContactType.SKYPE, "skype:grigory.kislin");
         resume.addContact(ContactType.EMAIL, "gkislin@yandex.ru");
         resume.addContact(ContactType.LINKEDIN, "https://www.linkedin.com/in/gkislin");
-       resume.addContact(ContactType.GITHUB, "https://github.com/gkislin");
+        resume.addContact(ContactType.GITHUB, "https://github.com/gkislin");
         resume.addContact(ContactType.HOMEPAGE, "http://gkislin.ru/");
         resume.addContact(ContactType.STACKOVERFLOW, "https://stackoverflow.com/users/548473");
         resume.addSection(SectionType.PERSONAL, new TextSection("Аналитический склад ума, сильная " +
@@ -165,7 +165,6 @@ public class ResumeTestData {
         for (SectionType type : SectionType.values()) {
             if (!(resume.getSection(type) == null)) {
                 System.out.println("\n >>> " + type.getTitle() + " <<<");
-                // Честно говоря, я пока не разобрался как проверить соотетствие типа секции, поэтому проверяю описание.
                 if (type.getTitle().equals("Образование") | type.getTitle().equals("Опыт работы")) {
                     System.out.println(resume.getSection(type));
                 } else {

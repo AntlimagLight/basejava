@@ -43,7 +43,7 @@ public class ListSection extends AbstractSection {
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder();
-        for (String string: content) {
+        for (String string : content) {
             result.append(string).append("\n");
         }
         return result.toString();

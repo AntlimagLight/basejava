@@ -69,4 +69,8 @@ public enum ContactType {
     public String toLink(String href) {
         return (href == null) ? "" : toLink0(href);
     }
+
+    public String toText(String value) {
+        return (value == null) ? "" : value;
+    }
 }
