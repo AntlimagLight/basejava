@@ -1,12 +1,18 @@
 package com.urise.webapp.storage;
 
 import com.urise.webapp.exception.NotExistStorageException;
-import com.urise.webapp.exception.StorageException;
-import com.urise.webapp.model.*;
+import com.urise.webapp.model.AbstractSection;
+import com.urise.webapp.model.ContactType;
+import com.urise.webapp.model.Resume;
+import com.urise.webapp.model.SectionType;
 import com.urise.webapp.sql.SqlHelper;
+import com.urise.webapp.util.JsonParser;
 
 import java.sql.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 public class SqlStorage implements Storage {
     public final SqlHelper sqlHelper;
@@ -147,20 +153,7 @@ public class SqlStorage implements Storage {
         String content = rs.getString("content");
         if (content != null) {
             SectionType type = SectionType.valueOf(rs.getString("section_type"));
-            switch (type) {
-                case PERSONAL:
-                case OBJECTIVE:
-                    r.addSection(type,new TextSection(content));
-                    break;
-                case ACHIEVEMENT:
-                case QUALIFICATIONS:
-                    r.addSection(type,new ListSection(Arrays.asList(content.split("\n"))));
-                case EXPERIENCE:
-                case EDUCATION:
-                    break;
-                default:
-                    throw new StorageException ("Некорректный тип секции", null);
-            }
+            r.addSection(type, JsonParser.readStringSql(content, AbstractSection.class));
         }
     }
 
@@ -181,7 +174,7 @@ public class SqlStorage implements Storage {
                 ps.setString(1, r.getUuid());
                 ps.setString(2, e.getKey().name());
                 AbstractSection section = e.getValue();
-                ps.setString(3, section.toString());
+                ps.setString(3, JsonParser.writeStringSql(section, AbstractSection.class));
                 ps.addBatch();
             }
             ps.executeBatch();

@@ -24,8 +24,8 @@
             <jsp:useBean id="resume" type="com.urise.webapp.model.Resume"/>
             <tr>
                 <td><a href="resume?uuid=${resume.uuid}&action=view">${resume.fullName}</a></td>
-                <td><%=resume.getContact(ContactType.PHONE)%></td>
-                <td><%=ContactType.toLink(resume.getContact(ContactType.EMAIL), resume.getContact(ContactType.EMAIL))%></td>
+                <td><%=ContactType.PHONE.toHtml(resume.getContact(ContactType.PHONE))%></td>
+                <td><%=ContactType.EMAIL.toLink(resume.getContact(ContactType.EMAIL))%></td>
                 <td><a href="resume?uuid=${resume.uuid}&action=delete"><img src="img/delete.png"></a></td>
                 <td><a href="resume?uuid=${resume.uuid}&action=edit"><img src="img/pencil.png"></a></td>
             </tr>

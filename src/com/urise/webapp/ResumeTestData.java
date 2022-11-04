@@ -75,80 +75,80 @@ public class ResumeTestData {
         exampleStringList.add("Родной русский, английский \"upper intermediate\"");
         resume.addSection(SectionType.QUALIFICATIONS, new ListSection(exampleStringList));
 
-//        List<Company> exampleCompanyList = new ArrayList<>();
-//        exampleCompanyList.add(createOnePeriodCompany("Alcatel", 1997, 9,
-//                2005, 1, "Инженер по аппаратному и программному тестированию", "" +
-//                        "Тестирование, отладка, внедрение ПО цифровой телефонной станции " +
-//                        "Alcatel 1000 S12 (CHILL, ASM)."));
-//        exampleCompanyList.add(createOnePeriodCompany("Siemens AG", 2005, 1,
-//                2007, 2, "Разработчик ПО", "Разработка информационной модели, " +
-//                        "проектирование интерфейсов, реализация и отладка ПО " +
-//                        "на мобильной IN платформе Siemens @vantage (Java, Unix)."));
-//        exampleCompanyList.add(createOnePeriodCompany("Enkata", 2007, 3,
-//                2008, 6, "Разработчик ПО", "Реализация клиентской (Eclipse RCP) и " +
-//                        "серверной (JBoss 4.2, Hibernate 3.0, Tomcat, JMS) частей кластерного J2EE приложения " +
-//                        "(OLAP, Data mining)."));
-//        exampleCompanyList.add(createOnePeriodCompany("Yota", 2008, 6,
-//                2012, 10, "Ведущий специалист", "Дизайн и имплементация Java EE" +
-//                        " фреймворка для отдела \"Платежные Системы\" (GlassFish v2.1, v3, OC4J, EJB3, JAX-WS RI \n" +
-//                        "2.1, Servlet 2.4, JSP, JMX, JMS, Maven2). Реализация администрирования, статистики " +
-//                        "и мониторинга фреймворка. Разработка online JMX клиента (Python/ Jython, Django, ExtJS)"));
-//        exampleCompanyList.add(createOnePeriodCompany("Luxoft (Deutsche Bank)", 2010, 12,
-//                2012, 4, "Ведущий программист", "Участие в проекте Deutsche Bank CRM " +
-//                        "(WebLogic, Hibernate, Spring, Spring MVC, SmartGWT, GWT, Jasper, Oracle). Реализация \n" +
-//                        "клиентской и серверной части CRM. Реализация RIA-приложения для администрирования, " +
-//                        "мониторинга и анализа результатов в области алгоритмического трейдинга. JPA, Spring, \n" +
-//                        "Spring-MVC, GWT, ExtGWT (GXT), Highstock, Commet, HTML5."));
-//        exampleCompanyList.add(createOnePeriodCompany("RIT Center", 2012, 4,
-//                2014, 10, "Java архитектор", "Организация процесса разработки системы " +
-//                        "ERP для разных окружений: релизная политика, версионирование, ведение CI (Jenkins),\n " +
-//                        "миграция базы (кастомизация Flyway), конфигурирование системы (pgBoucer, Nginx), " +
-//                        "AAA via SSO. Архитектура БД и серверной части системы. Разработка интергационных " +
-//                        "сервисов:\n CMIS, BPMN2, 1C (WebServices), сервисов общего назначения (почта, экспорт " +
-//                        "в pdf, doc, html). Интеграция Alfresco JLAN для online редактирование из браузера " +
-//                        "документов MS Office.\n Maven + plugin development, Ant, Apache Commons, Spring security, " +
-//                        "Spring MVC, Tomcat,WSO2, " +
-//                        "xcmis, OpenCmis, Bonita, Python scripting, Unix shell remote scripting via ssh" +
-//                        " tunnels, PL/Python"));
-//        exampleCompanyList.add(createOnePeriodCompany("Luxoft (Deutsche Bank)", 2014, 10,
-//                2016, 1, "Старший разработчик (backend)", "Проектирование и " +
-//                        "разработка онлайн платформы управления проектами Wrike (Java 8 API, Maven, Spring, MyBatis, " +
-//                        "Guava, \n Vaadin, PostgreSQL, Redis). Двухфакторная аутентификация, авторизация по OAuth1," +
-//                        " OAuth2, JWT SSO."));
-//        exampleCompanyList.add(createOnePeriodCompany("Java Online Projects", 2013, 10,
-//                2022, 9, "Автор проекта.", "Создание, организация и" +
-//                        " проведение Java онлайн проектов и стажировок."));
-//        resume.addSection(SectionType.EXPERIENCE, new CompanySection(exampleCompanyList));
-//        exampleCompanyList = new ArrayList<>();
-//        exampleCompanyList.add(createOnePeriodCompany("Заочная физико-техническая школа при МФТИ",
-//                1984, 9, 1987, 6, "Закончил с отличием", null));
-//// Два периода
-//        List<Period> spUniversePeriodList = new ArrayList<>();
-//        Period spUniversePeriod = new Period(LocalDate.of(1987, 9, 1),
-//                LocalDate.of(1993, 7, 1), "Инженер (программист Fortran, C)", null);
-//        spUniversePeriodList.add(spUniversePeriod);
-//        spUniversePeriod = new Period(LocalDate.of(1993, 9, 1),
-//                LocalDate.of(1996, 7, 1), "Аспирантура (программист С, С++)", null);
-//        spUniversePeriodList.add(spUniversePeriod);
-//        Company spUniverse = new Company("Санкт-Петербургский национальный исследовательский университет " +
-//                "информационных технологий, механики и оптики", spUniversePeriodList);
-//        exampleCompanyList.add(spUniverse);
-//// Двухпериодная компания закончилась
-//        exampleCompanyList.add(createOnePeriodCompany("Alcatel",
-//                1997, 9, 1998, 3, "6 месяцев обучения цифровым телефонным" +
-//                        " сетям (Москва)", null));
-//        exampleCompanyList.add(createOnePeriodCompany("Siemens AG",
-//                2005, 1, 2005, 4, "3 месяца обучения мобильным IN сетям (Берлин)",
-//                null));
-//        exampleCompanyList.add(createOnePeriodCompany("Luxoft",
-//                2011, 3, 2011, 4, "Курс 'Объектно-ориентированный анализ ИС. " +
-//                        "Концептуальное моделирование на UML.'",
-//                null));
-//        exampleCompanyList.add(createOnePeriodCompany("Coursera",
-//                2013, 3, 2013, 5, "'Functional Programming Principles " +
-//                        "in Scala' by Martin Odersky",
-//                null));
-//        resume.addSection(SectionType.EDUCATION, new CompanySection(exampleCompanyList));
+        List<Company> exampleCompanyList = new ArrayList<>();
+        exampleCompanyList.add(createOnePeriodCompany("Alcatel", 1997, 9,
+                2005, 1, "Инженер по аппаратному и программному тестированию", "" +
+                        "Тестирование, отладка, внедрение ПО цифровой телефонной станции " +
+                        "Alcatel 1000 S12 (CHILL, ASM)."));
+        exampleCompanyList.add(createOnePeriodCompany("Siemens AG", 2005, 1,
+                2007, 2, "Разработчик ПО", "Разработка информационной модели, " +
+                        "проектирование интерфейсов, реализация и отладка ПО " +
+                        "на мобильной IN платформе Siemens @vantage (Java, Unix)."));
+        exampleCompanyList.add(createOnePeriodCompany("Enkata", 2007, 3,
+                2008, 6, "Разработчик ПО", "Реализация клиентской (Eclipse RCP) и " +
+                        "серверной (JBoss 4.2, Hibernate 3.0, Tomcat, JMS) частей кластерного J2EE приложения " +
+                        "(OLAP, Data mining)."));
+        exampleCompanyList.add(createOnePeriodCompany("Yota", 2008, 6,
+                2012, 10, "Ведущий специалист", "Дизайн и имплементация Java EE" +
+                        " фреймворка для отдела \"Платежные Системы\" (GlassFish v2.1, v3, OC4J, EJB3, JAX-WS RI \n" +
+                        "2.1, Servlet 2.4, JSP, JMX, JMS, Maven2). Реализация администрирования, статистики " +
+                        "и мониторинга фреймворка. Разработка online JMX клиента (Python/ Jython, Django, ExtJS)"));
+        exampleCompanyList.add(createOnePeriodCompany("Luxoft (Deutsche Bank)", 2010, 12,
+                2012, 4, "Ведущий программист", "Участие в проекте Deutsche Bank CRM " +
+                        "(WebLogic, Hibernate, Spring, Spring MVC, SmartGWT, GWT, Jasper, Oracle). Реализация \n" +
+                        "клиентской и серверной части CRM. Реализация RIA-приложения для администрирования, " +
+                        "мониторинга и анализа результатов в области алгоритмического трейдинга. JPA, Spring, \n" +
+                        "Spring-MVC, GWT, ExtGWT (GXT), Highstock, Commet, HTML5."));
+        exampleCompanyList.add(createOnePeriodCompany("RIT Center", 2012, 4,
+                2014, 10, "Java архитектор", "Организация процесса разработки системы " +
+                        "ERP для разных окружений: релизная политика, версионирование, ведение CI (Jenkins),\n " +
+                        "миграция базы (кастомизация Flyway), конфигурирование системы (pgBoucer, Nginx), " +
+                        "AAA via SSO. Архитектура БД и серверной части системы. Разработка интергационных " +
+                        "сервисов:\n CMIS, BPMN2, 1C (WebServices), сервисов общего назначения (почта, экспорт " +
+                        "в pdf, doc, html). Интеграция Alfresco JLAN для online редактирование из браузера " +
+                        "документов MS Office.\n Maven + plugin development, Ant, Apache Commons, Spring security, " +
+                        "Spring MVC, Tomcat,WSO2, " +
+                        "xcmis, OpenCmis, Bonita, Python scripting, Unix shell remote scripting via ssh" +
+                        " tunnels, PL/Python"));
+        exampleCompanyList.add(createOnePeriodCompany("Luxoft (Deutsche Bank)", 2014, 10,
+                2016, 1, "Старший разработчик (backend)", "Проектирование и " +
+                        "разработка онлайн платформы управления проектами Wrike (Java 8 API, Maven, Spring, MyBatis, " +
+                        "Guava, \n Vaadin, PostgreSQL, Redis). Двухфакторная аутентификация, авторизация по OAuth1," +
+                        " OAuth2, JWT SSO."));
+        exampleCompanyList.add(createOnePeriodCompany("Java Online Projects", 2013, 10,
+                2022, 9, "Автор проекта.", "Создание, организация и" +
+                        " проведение Java онлайн проектов и стажировок."));
+        resume.addSection(SectionType.EXPERIENCE, new CompanySection(exampleCompanyList));
+        exampleCompanyList = new ArrayList<>();
+        exampleCompanyList.add(createOnePeriodCompany("Заочная физико-техническая школа при МФТИ",
+                1984, 9, 1987, 6, "Закончил с отличием", null));
+// Два периода
+        List<Period> spUniversePeriodList = new ArrayList<>();
+        Period spUniversePeriod = new Period(LocalDate.of(1987, 9, 1),
+                LocalDate.of(1993, 7, 1), "Инженер (программист Fortran, C)", null);
+        spUniversePeriodList.add(spUniversePeriod);
+        spUniversePeriod = new Period(LocalDate.of(1993, 9, 1),
+                LocalDate.of(1996, 7, 1), "Аспирантура (программист С, С++)", null);
+        spUniversePeriodList.add(spUniversePeriod);
+        Company spUniverse = new Company("Санкт-Петербургский национальный исследовательский университет " +
+                "информационных технологий, механики и оптики", spUniversePeriodList);
+        exampleCompanyList.add(spUniverse);
+// Двухпериодная компания закончилась
+        exampleCompanyList.add(createOnePeriodCompany("Alcatel",
+                1997, 9, 1998, 3, "6 месяцев обучения цифровым телефонным" +
+                        " сетям (Москва)", null));
+        exampleCompanyList.add(createOnePeriodCompany("Siemens AG",
+                2005, 1, 2005, 4, "3 месяца обучения мобильным IN сетям (Берлин)",
+                null));
+        exampleCompanyList.add(createOnePeriodCompany("Luxoft",
+                2011, 3, 2011, 4, "Курс 'Объектно-ориентированный анализ ИС. " +
+                        "Концептуальное моделирование на UML.'",
+                null));
+        exampleCompanyList.add(createOnePeriodCompany("Coursera",
+                2013, 3, 2013, 5, "'Functional Programming Principles " +
+                        "in Scala' by Martin Odersky",
+                null));
+        resume.addSection(SectionType.EDUCATION, new CompanySection(exampleCompanyList));
         return resume;
     }
 

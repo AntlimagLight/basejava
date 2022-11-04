@@ -25,6 +25,7 @@ public class ResumeServlet extends HttpServlet {
         storage.save(ResumeTestData.createFullResume(UUID.randomUUID().toString(), "Evan Chaplin"));
         storage.save(ResumeTestData.createFullResume(UUID.randomUUID().toString(), "Alise Marlow"));
         storage.save(ResumeTestData.createFullResume(UUID.randomUUID().toString(), "Igor Raven"));
+        storage.save(new Resume("Empty Resume"));
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws javax.servlet.ServletException, IOException {
