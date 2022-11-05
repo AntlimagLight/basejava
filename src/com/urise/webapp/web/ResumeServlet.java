@@ -25,15 +25,21 @@ public class ResumeServlet extends HttpServlet {
         storage.save(ResumeTestData.createFullResume(UUID.randomUUID().toString(), "Evan Chaplin"));
         storage.save(ResumeTestData.createFullResume(UUID.randomUUID().toString(), "Alise Marlow"));
         storage.save(ResumeTestData.createFullResume(UUID.randomUUID().toString(), "Igor Raven"));
-        storage.save(new Resume("Empty Resume"));
+//        storage.save(new Resume("Empty Resume"));
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws javax.servlet.ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         String uuid = request.getParameter("uuid");
         String fullName = request.getParameter("fullName");
-        Resume r = storage.get(uuid);
-        r.setFullName(fullName);
+        final boolean isCreate = (uuid.equals("new"));
+        Resume r;
+        if (isCreate) {
+            r = new Resume(fullName);
+        } else {
+            r = storage.get(uuid);
+            r.setFullName(fullName);
+        }
         for (ContactType type : ContactType.values()) {
             String value = request.getParameter(type.name());
             if (isNull(value)) {
@@ -62,7 +68,11 @@ public class ResumeServlet extends HttpServlet {
                 }
             }
         }
-        storage.update(r);
+        if (isCreate) {
+            storage.save(r);
+        } else {
+            storage.update(r);
+        }
         response.sendRedirect("resume");
     }
 
@@ -81,7 +91,35 @@ public class ResumeServlet extends HttpServlet {
                 response.sendRedirect("resume");
                 return;
             }
-            case "view", "edit" -> r = storage.get(uuid);
+            case "view" -> r = storage.get(uuid);
+            case "add" -> r = Resume.NEW;
+            case "edit" -> {
+                r = storage.get(uuid);
+                for (SectionType type : SectionType.values()) {
+                    AbstractSection section = r.getSection(type);
+                    switch (type) {
+                        case OBJECTIVE:
+                        case PERSONAL:
+                            if (section == null) {
+                                section = TextSection.EMPTY;
+                            }
+                            break;
+                        case ACHIEVEMENT:
+                        case QUALIFICATIONS:
+                            if (section == null) {
+                                section = ListSection.EMPTY;
+                            }
+                            break;
+                        case EXPERIENCE:
+                        case EDUCATION:
+                            if (section == null) {
+                                section = CompanySection.EMPTY;
+                            }
+                            break;
+                    }
+                    r.addSection(type, section);
+                }
+            }
             default -> throw new IllegalArgumentException("Action " + action + " is illegal");
         }
         request.setAttribute("resume", r);

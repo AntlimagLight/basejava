@@ -3,6 +3,7 @@ package com.urise.webapp.model;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import java.io.Serial;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -10,6 +11,8 @@ import java.util.Objects;
 public class ListSection extends AbstractSection {
     @Serial
     private static final long serialVersionUID = 1L;
+
+    public static final AbstractSection EMPTY = new ListSection();
 
     private List<String> content;
 
@@ -19,6 +22,7 @@ public class ListSection extends AbstractSection {
     }
 
     public ListSection() {
+        this.content = new ArrayList<>();
     }
 
     public List<String> getContent() {

@@ -24,25 +24,21 @@
             <dl>
                 <dt>${type.title}</dt>
                 <dd><input type="text" name="${type.name()}" size=30
-                           value="${ContactType.values() == null ? "" : resume.getContact(type)}"></dd>
+                           value="${resume.getContact(type)}"></dd>
             </dl>
         </c:forEach>
         <h3>Секции:</h3>
         <c:forEach var="type" items="<%=SectionType.values()%>">
-<%--            Чтобы избежать падения приложения, в случае если у резюме нет секций, я пытался --%>
-<%--            создавать новый инстанс соответствующей секции, в случае если resume.getSection(type) == null--%>
-<%--            но мне не удалось за пару часов найти в интернете нужных инструментов, которыми можно было --%>
-<%--            бы этосделать просто, или же я неправильно ищу. Прошу подсказки.--%>
             <c:set var="section" value="${resume.getSection(type)}"/>
             <jsp:useBean id="section" type="com.urise.webapp.model.AbstractSection"/>
             <h4><a>${type.title}</a></h4>
             <c:choose>
                 <c:when test="${type=='OBJECTIVE' || type=='PERSONAL'}">
-                    <textarea name='${type}' cols=90 rows=5><%=section == null ? "" : section%></textarea>
+                    <textarea name='${type}' cols=90 rows=5><%=resume.getUuid().equals("new") ? "" : section%></textarea>
                 </c:when>
                 <c:when test="${type=='QUALIFICATIONS' || type=='ACHIEVEMENT'}">
                     <textarea name='${type}' cols=90
-                              rows=12><%=section == null ? "" : String.join("\n", ((ListSection) section).getContent())%></textarea>
+                              rows=12><%=resume.getUuid().equals("new") ? "" : String.join("\n", ((ListSection) section).getContent())%></textarea>
                 </c:when>
                 <c:when test="${type=='EXPERIENCE' || type=='EDUCATION'}">
 <%--                    coming soon--%>

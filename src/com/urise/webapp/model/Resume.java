@@ -5,10 +5,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serial;
 import java.io.Serializable;
-import java.util.EnumMap;
-import java.util.Map;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * Initial resume class
@@ -19,6 +16,19 @@ import java.util.UUID;
 public class Resume implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
+
+    public static final Resume NEW = new Resume("new","");
+
+    static {
+        NEW.addSection(SectionType.OBJECTIVE, TextSection.EMPTY);
+        NEW.addSection(SectionType.PERSONAL, TextSection.EMPTY);
+        NEW.addSection(SectionType.ACHIEVEMENT, ListSection.EMPTY);
+        NEW.addSection(SectionType.QUALIFICATIONS, ListSection.EMPTY);
+        List<Company> emptyList = new ArrayList<>();
+        emptyList.add(Company.EMPTY);
+        NEW.addSection(SectionType.EXPERIENCE, new CompanySection(emptyList));
+        NEW.addSection(SectionType.EDUCATION, new CompanySection(emptyList));
+    }
 
     private final String uuid;
 
@@ -44,7 +54,7 @@ public class Resume implements Serializable {
     }
 
     public Resume() {
-        this("NoName");
+        this("");
     }
 
     public Resume(String fullName) {

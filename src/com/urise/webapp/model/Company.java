@@ -9,6 +9,7 @@ import java.util.Objects;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Company implements Serializable {
 
+    public static final Company EMPTY = new Company();
     private List<Period> periods;
     private String name;
 

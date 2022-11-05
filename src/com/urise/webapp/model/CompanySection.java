@@ -10,6 +10,7 @@ import java.util.Objects;
 public class CompanySection extends AbstractSection {
     @Serial
     private static final long serialVersionUID = 1L;
+    public static final AbstractSection EMPTY = new CompanySection();
 
     private List<Company> companies;
 
