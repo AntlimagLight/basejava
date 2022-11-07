@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.List;
 import java.util.UUID;
 
 public class ResumeServlet extends HttpServlet {
@@ -60,7 +61,14 @@ public class ResumeServlet extends HttpServlet {
                         break;
                     case ACHIEVEMENT:
                     case QUALIFICATIONS:
-                        r.addSection(type, new ListSection(Arrays.asList(value.split("\\n"))));
+                        List<String> newContent = new java.util.ArrayList<>(Arrays.stream(value.split("\\r\\n"))
+                                .filter(s -> !s.trim().equals(""))
+                                .toList());
+                        if (newContent.isEmpty()) {
+                            r.getSections().remove(type);
+                        } else {
+                            r.addSection(type, new ListSection(newContent));
+                        }
                         break;
                     case EDUCATION:
                     case EXPERIENCE:
