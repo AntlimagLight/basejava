@@ -3,13 +3,20 @@ package com.urise.webapp.model;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Company implements Serializable {
 
-    public static final Company EMPTY = new Company();
+    public static final Company EMPTY;
+
+    static { List<Period> emptyList = new ArrayList<>();
+        emptyList.add(Period.EMPTY);
+        EMPTY = new Company("", emptyList);
+    }
+
     private List<Period> periods;
     private String name;
 

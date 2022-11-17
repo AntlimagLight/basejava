@@ -11,6 +11,8 @@ import java.util.Objects;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Period implements Serializable {
+
+    public static final Period EMPTY = new Period();
     @XmlJavaTypeAdapter(LocalDateAdapter.class)
     private LocalDate startDate;
     @XmlJavaTypeAdapter(LocalDateAdapter.class)
@@ -58,7 +60,7 @@ public class Period implements Serializable {
         if (!startDate.equals(that.startDate)) return false;
         if (!endDate.equals(that.endDate)) return false;
         if (!title.equals(that.title)) return false;
-        return description != null ? description.equals(that.description) : that.description == null;
+        return Objects.equals(description, that.description);
     }
 
     @Override

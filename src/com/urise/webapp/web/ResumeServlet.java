@@ -4,6 +4,7 @@ import com.urise.webapp.Config;
 import com.urise.webapp.ResumeTestData;
 import com.urise.webapp.model.*;
 import com.urise.webapp.storage.Storage;
+import com.urise.webapp.util.DateFormatUtil;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
@@ -29,7 +31,7 @@ public class ResumeServlet extends HttpServlet {
 //        storage.save(new Resume("Empty Resume"));
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws javax.servlet.ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         request.setCharacterEncoding("UTF-8");
         String uuid = request.getParameter("uuid");
         String fullName = request.getParameter("fullName");
@@ -51,17 +53,14 @@ public class ResumeServlet extends HttpServlet {
         }
         for (SectionType type : SectionType.values()) {
             String value = request.getParameter(type.name());
-            if (isNull(value)) {
+            String[] values = request.getParameterValues(type.name());
+            if (isNull(value) && values.length < 2) {
                 r.getSections().remove(type);
             } else {
                 switch (type) {
-                    case OBJECTIVE:
-                    case PERSONAL:
-                        r.addSection(type, new TextSection(value));
-                        break;
-                    case ACHIEVEMENT:
-                    case QUALIFICATIONS:
-                        List<String> newContent = new java.util.ArrayList<>(Arrays.stream(value.split("\\r\\n"))
+                    case OBJECTIVE, PERSONAL -> r.addSection(type, new TextSection(value));
+                    case ACHIEVEMENT, QUALIFICATIONS -> {
+                        List<String> newContent = new ArrayList<>(Arrays.stream(value.split("\\r\\n"))
                                 .filter(s -> !s.trim().equals(""))
                                 .toList());
                         if (newContent.isEmpty()) {
@@ -69,10 +68,31 @@ public class ResumeServlet extends HttpServlet {
                         } else {
                             r.addSection(type, new ListSection(newContent));
                         }
-                        break;
-                    case EDUCATION:
-                    case EXPERIENCE:
-//                        coming soon...
+                    }
+                    case EDUCATION, EXPERIENCE -> {
+                        List<Company> companies = new ArrayList<>();
+                        String[] companyName = request.getParameterValues(type.name());
+                        for (int i = 0; i < values.length; i++) {
+                            String name = values[i];
+                            if (!isNull(name)) {
+                                List<Period> periods = new ArrayList<>();
+                                String pfx = type.name() + i;
+                                String[] startDates = request.getParameterValues(pfx + "startDate");
+                                String[] endDates = request.getParameterValues(pfx + "endDate");
+                                String[] titles = request.getParameterValues(pfx + "title");
+                                String[] descriptions = request.getParameterValues(pfx + "description");
+                                if (titles != null) {
+                                    for (int j = 0; j < titles.length; j++) {
+                                        if (!isNull(titles[j])) {
+                                            periods.add(new Period(DateFormatUtil.parse(startDates[j]), DateFormatUtil.parse(endDates[j]), titles[j], descriptions[j]));
+                                        }
+                                    }
+                                    companies.add(new Company(companyName[i], periods));
+                                }
+                            }
+                        }
+                        r.addSection(type, new CompanySection(companies));
+                    }
                 }
             }
         }
@@ -120,9 +140,17 @@ public class ResumeServlet extends HttpServlet {
                             break;
                         case EXPERIENCE:
                         case EDUCATION:
-                            if (section == null) {
-                                section = CompanySection.EMPTY;
+                            CompanySection companySection = (CompanySection) section;
+                            List<Company> companies = new ArrayList<>();
+                            if (companySection != null) {
+                                for (Company company : companySection.getCompanies()) {
+                                    List<Period> periods = new ArrayList<>(company.getPeriods());
+                                    companies.add(new Company(company.getName(), periods));
+                                }
+                            } else {
+                                companies.add(Company.EMPTY);
                             }
+                            section = new CompanySection(companies);
                             break;
                     }
                     r.addSection(type, section);
