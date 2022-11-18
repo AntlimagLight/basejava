@@ -7,6 +7,7 @@ import java.time.format.DateTimeFormatter;
 
 public class DateFormatUtil {
 
+    public static final LocalDate CURRENT_MONTH = LocalDate.of(LocalDate.now().getYear(),LocalDate.now().getMonth(),1);
     public static final LocalDate DEFAULT_DATE = LocalDate.of(3000,1,1);
     private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("MM/yyyy");
 
@@ -17,6 +18,13 @@ public class DateFormatUtil {
     public static String format(LocalDate date) {
         if (date == null) return "";
         return date.equals(DEFAULT_DATE) ? "" : date.format(DATE_FORMATTER);
+    }
+
+    public static String formatForView(LocalDate date) {
+        if (date == null) return "";
+        if (date.equals(DEFAULT_DATE)) return "";
+        if (date.isAfter(CURRENT_MONTH) || date.equals(CURRENT_MONTH)) return "Сейчас";
+        return date.format(DATE_FORMATTER);
     }
 
     public static LocalDate parse(String date) {

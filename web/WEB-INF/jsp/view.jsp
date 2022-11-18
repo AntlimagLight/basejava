@@ -58,7 +58,7 @@
                     <c:forEach var="period" items="${company.periods}">
                         <jsp:useBean id="period" type="com.urise.webapp.model.Period"/>
                     <tr>
-                        <td width="200px">${DateFormatUtil.format(period.startDate)} - ${DateFormatUtil.format(period.endDate)}</td>
+                        <td width="200px">${DateFormatUtil.formatForView(period.startDate)} - ${DateFormatUtil.formatForView(period.endDate)}</td>
                         <td><b>${period.title}</b><br>
                         ${period.description}</td>
                     </tr>
